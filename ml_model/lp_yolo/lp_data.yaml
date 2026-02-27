@@ -1,0 +1,8 @@
+path: ml_model/lp_yolo/datasets
+
+train: train/images
+val: val/images
+
+names:
+  0: LicensePlate
+  

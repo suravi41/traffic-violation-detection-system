@@ -1,0 +1,24 @@
+# Ignore all datasets
+ml_model/helmet_yolo/
+ml_model/helmet_dataset/
+ml_model/license_plate_dataset/
+ml_model/lp_yolo/datasets/
+
+# Ignore trained model weights (if large)
+*.pt
+
+# Ignore YOLO training outputs
+runs/
+
+# Python
+venv311/
+__pycache__/
+*.pyc
+
+# Generated uploads & evidence (do not push)
+backend/uploads/
+backend/evidence/
+ml_model/evidence/
+
+# VS Code (optional)
+.vscode/

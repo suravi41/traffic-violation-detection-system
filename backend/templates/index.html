@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Traffic Violation Detection System</title>
+  <style>
+    body{
+      font-family: Arial, sans-serif;
+      background:#f4f6f9;
+      margin:0;
+      padding:0;
+    }
+
+    .topbar{
+      background:#0b5ed7;
+      color:white;
+      padding:16px 24px;
+      font-size:20px;
+      font-weight:bold;
+    }
+
+    .wrap{
+      display:flex;
+      justify-content:center;
+      padding:40px 16px;
+    }
+
+    .card{
+      width:560px;
+      background:white;
+      border-radius:12px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.08);
+      padding:24px;
+      text-align:left;
+    }
+
+    .subtitle{
+      color:#555;
+      margin-top:6px;
+      margin-bottom:18px;
+      font-size:14px;
+      line-height:1.4;
+    }
+
+    .row{
+      margin:14px 0;
+    }
+
+    input[type="file"]{
+      width:100%;
+      padding:10px;
+      border:1px solid #ddd;
+      border-radius:8px;
+      background:#fafafa;
+    }
+
+    button{
+      width:100%;
+      padding:12px;
+      border:none;
+      border-radius:8px;
+      background:#0b5ed7;
+      color:white;
+      font-size:15px;
+      font-weight:bold;
+      cursor:pointer;
+    }
+
+    button:hover{
+      background:#094db2;
+    }
+
+    .hint{
+      font-size:12px;
+      color:#666;
+      margin-top:8px;
+    }
+
+    .preview, .resultBox{
+      margin-top:18px;
+      padding:14px;
+      border:1px solid #eee;
+      border-radius:10px;
+      background:#fcfcfc;
+    }
+
+    .preview img, .resultBox img{
+      max-width:100%;
+      border-radius:8px;
+      margin-top:10px;
+      border:1px solid #eee;
+    }
+
+    .badges{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+
+    .badge{
+      display:inline-block;
+      padding:6px 10px;
+      border-radius:999px;
+      background:#e7f1ff;
+      color:#0b5ed7;
+      font-weight:bold;
+      font-size:13px;
+    }
+
+    .status{
+      margin-top:12px;
+      padding:10px 12px;
+      border-radius:10px;
+      font-weight:bold;
+      font-size:14px;
+    }
+
+    .status.ok{
+      background:#e7fff0;
+      border:1px solid #b7f5cd;
+      color:#147a3d;
+    }
+
+    .status.violation{
+      background:#fff0f0;
+      border:1px solid #ffc5c5;
+      color:#b42318;
+    }
+
+    .sectionTitle{
+      margin-top:14px;
+      font-weight:bold;
+    }
+
+    .plateBox{
+      margin-top:10px;
+      padding:10px;
+      background:white;
+      border:1px solid #eee;
+      border-radius:10px;
+    }
+
+    .plateRow{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      font-size:13px;
+    }
+
+    .small{
+      font-size:12px;
+      color:#666;
+      margin-top:6px;
+    }
+
+    .mono{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size:12px;
+      background:#f6f8fa;
+      padding:6px 8px;
+      border-radius:8px;
+      border:1px solid #eee;
+      display:inline-block;
+      margin-top:6px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">Traffic Violation Detection System</div>
+
+  <div class="wrap">
+    <div class="card">
+      <h2 style="margin:0;">Upload Image</h2>
+      <div class="subtitle">
+        Upload a traffic image to detect helmets, license plates, and extract plate numbers (OCR).
+      </div>
+
+      <form id="uploadForm">
+        <div class="row">
+          <input type="file" id="imageInput" accept="image/*" required>
+          <div class="hint">Supported: JPG, PNG.</div>
+        </div>
+
+        <div class="row">
+          <button type="submit">Run Full Detection</button>
+        </div>
+      </form>
+
+      <div class="preview" id="preview" style="display:none;">
+        <div><b>Selected Image Preview:</b></div>
+        <img id="previewImg" />
+      </div>
+
+      <div class="resultBox" id="result" style="display:none;"></div>
+    </div>
+  </div>
+
+<script>
+  const fileInput = document.getElementById("imageInput");
+  const previewDiv = document.getElementById("preview");
+  const previewImg = document.getElementById("previewImg");
+  const resultDiv = document.getElementById("result");
+
+  fileInput.addEventListener("change", () => {
+    const file = fileInput.files[0];
+    if (!file) return;
+    previewImg.src = URL.createObjectURL(file);
+    previewDiv.style.display = "block";
+    resultDiv.style.display = "none";
+    resultDiv.innerHTML = "";
+  });
+
+  function buildPlateHTML(platesOcr){
+    if(!platesOcr || platesOcr.length === 0){
+      return `<div class="small">No plate OCR results found.</div>`;
+    }
+
+    let html = `<div class="sectionTitle">Extracted Plate Numbers (OCR)</div>`;
+
+    platesOcr.forEach(p => {
+      const candidates = p.ocr_candidates || [];
+      let candHtml = "";
+
+      if(candidates.length === 0){
+        candHtml = `<div class="small">No readable text detected.</div>`;
+      } else {
+        candHtml = candidates.map(c => {
+          return `<div class="plateRow">
+                    <div><b>Text:</b> <span class="mono">${c.text || "-"}</span></div>
+                    <div><b>OCR Conf:</b> ${c.confidence}</div>
+                  </div>`;
+        }).join("");
+      }
+
+      html += `
+        <div class="plateBox">
+          <div class="plateRow">
+            <div><b>Plate #${p.plate_index}</b></div>
+            <div><b>Detect Conf:</b> ${p.detection_confidence}</div>
+          </div>
+          <div class="small">Crop: <a href="${p.crop_image_url}" target="_blank">${p.crop_image}</a></div>
+          <div style="margin-top:8px;">${candHtml}</div>
+        </div>
+      `;
+    });
+
+    return html;
+  }
+
+  document.getElementById("uploadForm").addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    const file = fileInput.files[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    resultDiv.style.display = "block";
+    resultDiv.innerHTML = "<div>Detecting... please wait</div>";
+
+    // ✅ FULL system endpoint
+    const response = await fetch("/detect/all", {
+      method: "POST",
+      body: formData
+    });
+
+    const data = await response.json();
+
+    // Simple violation logic (for now):
+    // If helmet_count == 0 -> Helmet violation possible
+    // (Later we improve with rider detection)
+    let statusHTML = "";
+    if(data.helmet_count === 0){
+      statusHTML = `<div class="status violation">🚨 Possible Helmet Violation: No helmet detected</div>`;
+    } else {
+      statusHTML = `<div class="status ok">✅ Helmet Detection: Helmet(s) detected</div>`;
+    }
+
+    const plateHTML = buildPlateHTML(data.plates_ocr);
+
+    resultDiv.innerHTML = `
+      <div class="badges">
+        <div class="badge">Helmet Count: ${data.helmet_count}</div>
+        <div class="badge">Plate Count: ${data.plate_count}</div>
+      </div>
+
+      ${statusHTML}
+
+      ${plateHTML}
+
+      <div class="sectionTitle" style="margin-top:16px;">Annotated Result</div>
+      <img src="${data.annotated_image_url}" alt="Annotated Result">
+
+      <div class="hint" style="margin-top:10px;">
+        Evidence saved: JSON + annotated image + plate crops in <b>backend/evidence</b>.
+      </div>
+      <div class="small">
+        Evidence JSON: <span class="mono">${data.evidence_json_saved_as}</span>
+      </div>
+    `;
+  });
+</script>
+
+</body>
+</html>

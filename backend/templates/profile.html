@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Officer Profile</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <style>
+    .profile-grid{
+      display:grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap:24px;
+      align-items:start;
+    }
+    @media (max-width: 900px){
+      .profile-grid{ grid-template-columns: 1fr; }
+    }
+    .form-row{ margin:14px 0; }
+    .label{ display:block; font-weight:600; margin-bottom:8px; }
+    .input, select{
+      width:100%;
+      padding:12px 12px;
+      border:1px solid #e6e9f2;
+      border-radius:10px;
+      outline:none;
+      background:#fff;
+      font-size:14px;
+    }
+    .input:focus, select:focus{
+      border-color:#b7cdfd;
+      box-shadow:0 0 0 3px rgba(11,94,215,0.12);
+    }
+    .photo-box{
+      border:1px solid #e6e9f2;
+      border-radius:16px;
+      background:#ffffff;
+      overflow:hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+    }
+    .photo-head{
+      padding:14px 16px;
+      border-bottom:1px solid #eef1f7;
+      font-weight:700;
+    }
+    .photo-body{
+      padding:16px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:260px;
+      background: linear-gradient(180deg, #f7f9ff 0%, #ffffff 100%);
+    }
+    .photo-body img{
+      width:190px;
+      height:190px;
+      object-fit:cover;
+      border-radius:18px;
+      border:1px solid #e6e9f2;
+      background:#fff;
+    }
+    .btn-row{
+      display:flex;
+      gap:10px;
+      margin-top:18px;
+      flex-wrap:wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <div class="nav-inner">
+      <div class="brand">
+        <img src="/static/LOGO.jpg" alt="Logo">
+        <div>Traffic Monitoring</div>
+      </div>
+
+      <div class="navlinks">
+        <a href="/home">Home</a>
+        <a href="/services">Services</a>
+        <a href="/upload">Upload</a>
+        <a href="/evidence">Evidence</a>
+        <a class="active" href="/profile">Profile</a>
+      </div>
+
+      <div class="nav-actions">
+        <a class="btn btn-outline" href="/logout">Logout</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="card card-pad">
+      <h2 class="section-title">Officer Profile</h2>
+      <p class="muted">(For now this is UI only; database connection will be done later.)</p>
+
+      <div class="profile-grid" style="margin-top:16px;">
+
+        <!-- LEFT: FORM -->
+        <div class="card card-pad">
+          <div class="form-row">
+            <label class="label">Full Name</label>
+            <input class="input" type="text" value="{{ officer_name }}" placeholder="Enter full name">
+          </div>
+
+          <div class="form-row">
+            <label class="label">Email</label>
+            <input class="input" type="email" placeholder="example@traffic.gov">
+          </div>
+
+          <div class="form-row">
+            <label class="label">Post</label>
+            <select>
+              <option selected>Select Post</option>
+              <option>Traffic Officer</option>
+              <option>Inspector</option>
+              <option>DSP</option>
+              <option>Admin</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label class="label">Branch Station</label>
+            <select>
+              <option selected>Select Station</option>
+              <option>Kathmandu - Thapathali</option>
+              <option>Lalitpur - Jawalakhel</option>
+              <option>Bhaktapur - Suryabinayak</option>
+              <option>Pokhara - Lakeside</option>
+            </select>
+          </div>
+
+          <div class="btn-row">
+            <button class="btn" type="button">Save Changes</button>
+            <a class="btn btn-outline" href="/logout">Logout</a>
+          </div>
+
+          <p class="muted" style="margin-top:12px; font-size:13px;">
+            Note: Save button is UI only right now. I’ll connect it to PostgreSQL later.
+          </p>
+        </div>
+
+        <!-- RIGHT: PHOTO -->
+        <div class="photo-box">
+          <div class="photo-head">Officer Photo</div>
+          <div class="photo-body">
+            <!-- Using logo as placeholder, we can add real upload later -->
+            <img src="/static/LOGO.jpg" alt="Officer Photo">
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
