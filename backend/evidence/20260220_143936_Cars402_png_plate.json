@@ -1,0 +1,61 @@
+{
+  "type": "plate_detection_ocr",
+  "uploaded_file": "20260220_143936_Cars402.png",
+  "plate_count": 2,
+  "detections": [
+    {
+      "class_id": 0,
+      "class_name": "LicensePlate",
+      "confidence": 0.454,
+      "box_xyxy": [
+        363.92,
+        165.68,
+        445.46,
+        180.36
+      ]
+    },
+    {
+      "class_id": 0,
+      "class_name": "LicensePlate",
+      "confidence": 0.2604,
+      "box_xyxy": [
+        40.38,
+        143.88,
+        127.78,
+        190.89
+      ]
+    }
+  ],
+  "plates_ocr": [
+    {
+      "plate_index": 1,
+      "detection_confidence": 0.454,
+      "box_xyxy": [
+        363.92,
+        165.68,
+        445.46,
+        180.36
+      ],
+      "crop_image": "20260220_143936_Cars402_png_plate_crop_1.jpg",
+      "ocr_candidates": [
+        {
+          "text": "sgosi",
+          "confidence": 0.5378
+        }
+      ]
+    },
+    {
+      "plate_index": 2,
+      "detection_confidence": 0.2604,
+      "box_xyxy": [
+        40.38,
+        143.88,
+        127.78,
+        190.89
+      ],
+      "crop_image": "20260220_143936_Cars402_png_plate_crop_2.jpg",
+      "ocr_candidates": []
+    }
+  ],
+  "annotated_image": "20260220_143936_Cars402_png_plate_annotated.jpg"
+}

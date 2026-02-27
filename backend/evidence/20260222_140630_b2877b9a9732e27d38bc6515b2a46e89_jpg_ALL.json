@@ -1,0 +1,76 @@
+{
+  "created_at": "2026-02-22 02:06:30 PM",
+  "uploaded_file": "20260222_140630_b2877b9a9732e27d38bc6515b2a46e89.jpg",
+  "helmet_count": 3,
+  "plate_count": 1,
+  "helmet_detections": [
+    {
+      "class_id": 0,
+      "class_name": "helmet",
+      "confidence": 0.9145,
+      "box_xyxy": [
+        354.61,
+        41.0,
+        494.23,
+        197.54
+      ]
+    },
+    {
+      "class_id": 0,
+      "class_name": "helmet",
+      "confidence": 0.7598,
+      "box_xyxy": [
+        879.31,
+        111.56,
+        1017.65,
+        250.13
+      ]
+    },
+    {
+      "class_id": 0,
+      "class_name": "helmet",
+      "confidence": 0.6999,
+      "box_xyxy": [
+        735.2,
+        115.09,
+        841.16,
+        239.7
+      ]
+    }
+  ],
+  "plate_detections": [
+    {
+      "class_id": 0,
+      "class_name": "LicensePlate",
+      "confidence": 0.581,
+      "box_xyxy": [
+        1465.63,
+        765.58,
+        1596.92,
+        813.8
+      ]
+    }
+  ],
+  "plates_ocr": [
+    {
+      "plate_index": 1,
+      "detection_confidence": 0.581,
+      "box_xyxy": [
+        1465.63,
+        765.58,
+        1596.92,
+        813.8
+      ],
+      "crop_image": "20260222_140630_b2877b9a9732e27d38bc6515b2a46e89_jpg_all_plate_crop_1.jpg",
+      "crop_image_url": "/evidence-files/20260222_140630_b2877b9a9732e27d38bc6515b2a46e89_jpg_all_plate_crop_1.jpg",
+      "ocr_candidates": [
+        {
+          "text": "Picxy",
+          "confidence": 0.9052
+        }
+      ]
+    }
+  ],
+  "annotated_image": "20260222_140630_b2877b9a9732e27d38bc6515b2a46e89_jpg_ALL_annotated.jpg",
+  "annotated_image_url": "/evidence-files/20260222_140630_b2877b9a9732e27d38bc6515b2a46e89_jpg_ALL_annotated.jpg"
+}

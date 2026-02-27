@@ -1,0 +1,53 @@
+{
+  "uploaded_file": "20260221_172555_test_for_road_image_2.jpg",
+  "helmet_count": 1,
+  "plate_count": 1,
+  "helmet_detections": [
+    {
+      "class_id": 0,
+      "class_name": "helmet",
+      "confidence": 0.695,
+      "box_xyxy": [
+        139.58,
+        94.85,
+        180.14,
+        143.68
+      ]
+    }
+  ],
+  "plate_detections": [
+    {
+      "class_id": 0,
+      "class_name": "LicensePlate",
+      "confidence": 0.5847,
+      "box_xyxy": [
+        401.09,
+        240.08,
+        477.03,
+        258.92
+      ]
+    }
+  ],
+  "plates_ocr": [
+    {
+      "plate_index": 1,
+      "detection_confidence": 0.5847,
+      "box_xyxy": [
+        401.09,
+        240.08,
+        477.03,
+        258.92
+      ],
+      "crop_image": "20260221_172555_test_for_road_image_2_jpg_plate_crop_1.jpg",
+      "crop_image_url": "/evidence/20260221_172555_test_for_road_image_2_jpg_plate_crop_1.jpg",
+      "ocr_candidates": [
+        {
+          "text": "YSEMIR",
+          "confidence": 0.3019
+        }
+      ]
+    }
+  ],
+  "annotated_image": "20260221_172555_test_for_road_image_2_jpg_ALL_annotated.jpg",
+  "annotated_image_url": "/evidence/20260221_172555_test_for_road_image_2_jpg_ALL_annotated.jpg"
+}

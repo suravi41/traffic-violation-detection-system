@@ -1,0 +1,30 @@
+{
+  "type": "helmet_detection",
+  "uploaded_file": "20260220_152333_test for model road image.jpg",
+  "helmet_count": 2,
+  "detections": [
+    {
+      "class_id": 0,
+      "class_name": "helmet",
+      "confidence": 0.8053,
+      "box_xyxy": [
+        519.4,
+        793.41,
+        708.92,
+        1038.76
+      ]
+    },
+    {
+      "class_id": 0,
+      "class_name": "helmet",
+      "confidence": 0.3739,
+      "box_xyxy": [
+        1668.95,
+        877.78,
+        1817.1,
+        1012.46
+      ]
+    }
+  ],
+  "annotated_image": "20260220_152333_test for model road image_jpg_helmet_annotated.jpg"
+}

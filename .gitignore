@@ -15,10 +15,21 @@ venv311/
 __pycache__/
 *.pyc
 
-# Generated uploads & evidence (do not push)
-backend/uploads/
-backend/evidence/
-ml_model/evidence/
 
-# VS Code (optional)
-.vscode/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

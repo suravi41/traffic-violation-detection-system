@@ -1,0 +1,39 @@
+{
+  "uploaded_file": "20260218_230227_BikesHelmets30.png",
+  "helmet_count": 3,
+  "detections": [
+    {
+      "class_id": 0,
+      "class_name": "helmet",
+      "confidence": 0.7646,
+      "box_xyxy": [
+        90.58,
+        59.49,
+        152.84,
+        131.42
+      ]
+    },
+    {
+      "class_id": 0,
+      "class_name": "helmet",
+      "confidence": 0.7215,
+      "box_xyxy": [
+        127.59,
+        97.25,
+        182.97,
+        161.61
+      ]
+    },
+    {
+      "class_id": 0,
+      "class_name": "helmet",
+      "confidence": 0.2634,
+      "box_xyxy": [
+        21.47,
+        156.59,
+        73.21,
+        215.91
+      ]
+    }
+  ]
+}
