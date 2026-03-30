@@ -1,35 +1,51 @@
-# Ignore all datasets
+# ------------------------------
+# DATASETS & ML FILES
+# ------------------------------
 ml_model/helmet_yolo/
 ml_model/helmet_dataset/
 ml_model/license_plate_dataset/
 ml_model/lp_yolo/datasets/
+ml_model/datasets/
+ml_model/scripts/
+ml_model/configs/
 
-# Ignore trained model weights (if large)
+# trained weights
 *.pt
 
-# Ignore YOLO training outputs
+# YOLO outputs
 runs/
 
-# Python
+# ------------------------------
+# BACKEND GENERATED FILES
+# ------------------------------
+backend/evidence/
+backend/uploads/
+backend/video_uploads/
+
+# temp test outputs
+backend/*.jpg
+backend/*.png
+backend/*.mp4
+
+# ------------------------------
+# FRONTEND / BUILD FILES
+# ------------------------------
+frontend/node_modules/
+frontend/dist/
+
+# ------------------------------
+# ENVIRONMENT
+# ------------------------------
 venv311/
+.env
+
+# ------------------------------
+# PYTHON CACHE
+# ------------------------------
 __pycache__/
 *.pyc
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# ------------------------------
+# EDITOR FILES
+# ------------------------------
+.vscode/

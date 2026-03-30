@@ -1,6 +1,0 @@
-path: ml_model
-train: datasets/train/images
-val: datasets/val/images
-
-names:
-  0: helmet
